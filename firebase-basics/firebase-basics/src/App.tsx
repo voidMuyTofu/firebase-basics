@@ -20,7 +20,6 @@ export const App = () => {
       if(firebase){
         const user = await firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
         console.log('User: ', user);
-        
       }
     }catch(err){
       console.error(err);
