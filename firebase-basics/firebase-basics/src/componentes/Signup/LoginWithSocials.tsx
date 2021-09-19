@@ -1,4 +1,4 @@
-import firebase from '../firebase'
+import { Auth } from '../firebase'
 import { useHistory } from 'react-router';
 
 export const LoginWithSocials = () => {
@@ -7,8 +7,8 @@ export const LoginWithSocials = () => {
     const singUpWithGoogle = async() => {
 
         try {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            await firebase.auth().signInWithPopup(provider);
+            const provider = new Auth.GoogleAuthProvider();
+            await Auth().signInWithPopup(provider);
             history.push("/");
         } catch (err: any) {
             if (!!err.code) {
@@ -18,12 +18,11 @@ export const LoginWithSocials = () => {
             }
         }
     }
-    
+
     return (
         <>
             <h3>O inicie sesion con :</h3>
             <button onClick={singUpWithGoogle}>Google</button>
-            <p></p>
         </>
     );
 }

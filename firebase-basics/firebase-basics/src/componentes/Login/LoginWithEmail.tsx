@@ -1,34 +1,28 @@
-import firebase from '../firebase'
-import { useHistory } from 'react-router';
-import { useInput } from '../Hooks/useInput';
+import { useHistory } from "react-router";
+import { Auth } from "../firebase";
+import { useInput } from "../Hooks/useInput"
 
-export const LoginWithEmail = () => {
+export const LogInWithEmail = () => {
+
     const email = useInput("");
     const password = useInput("");
-    let history = useHistory();
+    const history = useHistory();
 
-    const signUp = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        try {
-            const user = await firebase.auth().createUserWithEmailAndPassword(email.value, password.value);
-            console.log('User: ', user);
+    const onSubmit = () => {
+        Auth().signInWithEmailAndPassword(email.value, password.value).then((userCredential) => {
             history.push("/");
-        }catch (err: any) {
-            if (!!err.code) {
-                if (err.code === 'auth/email-already-in-use') {
-                    console.log('El usuario ya existe');
-                }
-            }
-        }
+        });
     }
+
     return (
         <>
-            <h2>Inicia sesion</h2>
-            <form onSubmit={signUp}>
-                <input className="spacing" placeholder="Email" {...email} />
-                <input className="spacing" placeholder="Password" type="password" {...password} />
-                <button type="submit">Sign up</button>
+            <h1>Inicia sesion con tu email</h1>
+            <form onSubmit={onSubmit}>
+                <input className="spacing" placeholder="Email" {...email}></input>
+                <input className="spacing" placeholder="Password" type="password" {...password}></input>
+                <button type="submit">Iniciar sesion</button>
             </form>
+
         </>
-    );
+    )
 }

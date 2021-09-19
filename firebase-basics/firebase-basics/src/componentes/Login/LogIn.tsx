@@ -1,11 +1,10 @@
-import { LoginWithSocials } from './LoginWithSocials';
-import { LoginWithEmail } from './LoginWithEmail';
+import { LoginWithSocials } from "../Signup/LoginWithSocials";
+import { LogInWithEmail } from "./LoginWithEmail";
 
 export const LogIn = () => {
-
-    return (
+    return(
         <div className="form-container">
-            <LoginWithEmail/>
+            <LogInWithEmail/>
             <LoginWithSocials/>
         </div>
     );
