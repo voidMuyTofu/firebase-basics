@@ -15,20 +15,3 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
-
-export const isUserLoggedIn = () => {
-  
-  let isLoggedIn : boolean = false;
-  
-  firebase.auth().onAuthStateChanged((user) => {
-
-    //si el usuario esta logado
-    if (user) {
-      isLoggedIn = true;
-    } else {
-      isLoggedIn = false;
-    }
-  });
-
-  return isLoggedIn;
-}
